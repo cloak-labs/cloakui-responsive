@@ -1,0 +1,54 @@
+{
+  "name": "@cloakui/responsive",
+  "version": "0.0.1",
+  "description": "Simple framework for generating responsive CSS styles from JS.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "require": "./dist/*.js",
+      "import": "./dist/*.js",
+      "types": "./dist/*.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsc -p tsconfig.json -w --preserveWatchOutput",
+    "build": "npm run build-ts",
+    "build-ts": "tsc -p tsconfig.json",
+    "clean": "rm -rf .turbo && rm -rf dist && npm run clean:modules",
+    "clean:modules": "rm -rf node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloak-labs/cloakui-responsive.git"
+  },
+  "keywords": [
+    "cloakui",
+    "responsive",
+    "responsive ui",
+    "responsive design",
+    "responsive css",
+    "responsive styles",
+    "dynamic responsive styles",
+    "dynamic responsive css"
+  ],
+  "author": "Kaelan Smith",
+  "license": "LGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/cloak-labs/cloakui-responsive/issues"
+  },
+  "homepage": "https://github.com/cloak-labs/cloakui-responsive#readme",
+  "devDependencies": {
+    "@types/node": "^18.18.1",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^5.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
