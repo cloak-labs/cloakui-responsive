@@ -35,11 +35,11 @@ export const breakpointTailwindModifiers = {
  * @returns The generated class names
  */
 export function responsiveClassNameBuilder<T extends ResponsiveClassMap>(
-  classMap: T
+  classMap: T,
 ) {
   return (
     property: keyof T,
-    breakpointOptions: Partial<BreakpointOptions<any>>
+    breakpointOptions: Partial<BreakpointOptions<any>>,
   ): string => {
     return breakpoints
       .map((breakpoint) => {
@@ -61,16 +61,19 @@ export function responsiveClassNameBuilder<T extends ResponsiveClassMap>(
  */
 export function getResponsiveCSSVariables<T>(
   variableName: string,
-  breakpointOptions: BreakpointOptions<T>
+  breakpointOptions: BreakpointOptions<T>,
 ) {
   if (breakpointOptions === undefined) return null;
-  return breakpoints.reduce((acc, breakpoint) => {
-    const value = breakpointOptions[breakpoint];
-    if (value !== undefined) {
-      acc[buildResponsiveCSSVariable(variableName, breakpoint)] = value;
-    }
-    return acc;
-  }, {} as Record<string, T>);
+  return breakpoints.reduce(
+    (acc, breakpoint) => {
+      const value = breakpointOptions[breakpoint];
+      if (value !== undefined) {
+        acc[buildResponsiveCSSVariable(variableName, breakpoint)] = value;
+      }
+      return acc;
+    },
+    {} as Record<string, T>,
+  );
 }
 
 /**
@@ -81,7 +84,7 @@ export function getResponsiveCSSVariables<T>(
  */
 export function buildResponsiveCSSVariable(
   variableName: string,
-  breakpoint: keyof BreakpointOptions<any>
+  breakpoint: keyof BreakpointOptions<any>,
 ) {
   return `--${variableName}${
     breakpoint === "mobile"
@@ -106,7 +109,7 @@ export function buildResponsiveCSSVariable(
  */
 export function fillMissingBreakpoints<T>(
   options: BreakpointOptions<T>,
-  fallback: any
+  fallback: any,
 ): BreakpointOptions<T> {
   return breakpoints.reduce((acc, bp) => {
     // If this breakpoint has a value, use it

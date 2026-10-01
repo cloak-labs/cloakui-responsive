@@ -13,9 +13,9 @@ export const getImageSizesFromBreakpointWidths = (
       context: {
         breakpoint: keyof BreakpointOptions<string>;
         query: string;
-      }
+      },
     ) => number | string;
-  } = {}
+  } = {},
 ) => {
   const { filter = (w) => w } = options;
 
@@ -24,7 +24,7 @@ export const getImageSizesFromBreakpointWidths = (
     const query = breakpointMediaQueries[breakpoint];
     const widthNum = filter(
       Math.min(parseFloat(parseInt(percentageWidth).toFixed(2)), 100),
-      { breakpoint, query }
+      { breakpoint, query },
     );
     const sizeValue = typeof widthNum === "number" ? `${widthNum}vw` : widthNum;
     return { query, sizeValue };
